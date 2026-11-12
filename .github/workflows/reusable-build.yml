@@ -54,6 +54,7 @@ jobs:
     if: needs.matrix.outputs.has_valid_build_matrix == 'true'
     container:
       image: ghcr.io/zephyrproject-rtos/zephyr-build:main
+      options: --user 0
     needs: matrix
     name: Build
     strategy:
