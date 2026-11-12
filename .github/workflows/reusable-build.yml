@@ -136,10 +136,10 @@ jobs:
       - name: Install Zephyr Python requirements
         working-directory: ${{ env.base_dir }}
         run: |
-          python3 -m pip install --no-cache-dir -r zephyr/scripts/requirements.txt
-          python3 -m pip install --no-cache-dir jsonschema
-          python3 -c "import jsonschema; print('jsonschema installed:', jsonschema.__version__)"
-      
+          /usr/local/bin/python3 -m pip install --no-cache-dir -r zephyr/scripts/requirements.txt
+          /usr/local/bin/python3 -m pip install --no-cache-dir jsonschema
+          /usr/local/bin/python3 -c "import jsonschema; print('jsonschema installed')"
+
       - name: Check ZMK revision
         working-directory: ${{ env.base_dir }}
         run: |
