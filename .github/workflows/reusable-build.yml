@@ -133,6 +133,10 @@ jobs:
         working-directory: ${{ env.base_dir }}
         run: west update --fetch-opt=--filter=tree:0
       
+      - name: Ignore bundled ZMK boards incompatible with Zephyr 4.5
+        working-directory: ${{ env.base_dir }}
+        run: find zmk/app/boards -name board.yml -delete
+
       - name: Install Zephyr Python requirements
         working-directory: ${{ env.base_dir }}
         run: |
