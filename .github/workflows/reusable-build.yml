@@ -53,7 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     if: needs.matrix.outputs.has_valid_build_matrix == 'true'
     container:
-      image: zmkfirmware/zmk-build-arm:stable
+      image: ghcr.io/zephyrproject-rtos/zephyr-build:main
     needs: matrix
     name: Build
     strategy:
@@ -136,13 +136,6 @@ jobs:
       - name: Ignore bundled ZMK boards incompatible with Zephyr 4.5
         working-directory: ${{ env.base_dir }}
         run: find zmk/app/boards -name board.yml -delete
-
-      - name: Install Zephyr Python requirements
-        working-directory: ${{ env.base_dir }}
-        run: |
-          apt-get update
-          apt-get install -y python3-jsonschema
-          /usr/bin/python3 -c "import jsonschema; print('jsonschema installed')"
 
       - name: Check ZMK revision
         working-directory: ${{ env.base_dir }}
