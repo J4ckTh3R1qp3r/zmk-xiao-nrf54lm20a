@@ -147,6 +147,18 @@ jobs:
           find zmk/app -type f -name "*.yaml" \
             -exec sed -i 's/^include: kscan\.yaml$/include: base.yaml/' {} +
       
+      - name: Patch obsolete Kconfig settings for Zephyr 4.5
+        working-directory: ${{ env.base_dir }}
+        run: |
+          sed -i '/^config BT_CONN_TX_MAX$/,+1d' \
+            zmk/app/src/studio/Kconfig
+
+          sed -i '/^config NRF_SOC_VALIDATE_HEADERS_DISABLED$/,+1d' \
+            zmk/app/Kconfig
+
+          sed -i '/^CONFIG_REGULATOR_FIXED_INIT_PRIORITY=/d' \
+            zephyr/boards/seeed/xiao_nrf54lm20a/xiao_nrf54lm20a_nrf54lm20a_cpuapp_defconfig
+      
       - name: Check ZMK revision
         working-directory: ${{ env.base_dir }}
         run: |
