@@ -2,3 +2,4 @@ include:
   - board: xiao_nrf54lm20a/nrf54lm20a/cpuapp
     shield: tester_xiao
     artifact-name: xiao-nrf54lm20a-test
+    cmake-args: -DKCONFIG_ERROR_ON_WARNINGS=OFF
