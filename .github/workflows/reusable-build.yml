@@ -141,6 +141,12 @@ jobs:
         working-directory: ${{ env.base_dir }}
         run: find zmk/app/boards -name board.yml -delete
 
+      - name: Adapt ZMK KSCAN bindings for Zephyr 4.5
+        working-directory: ${{ env.base_dir }}
+        run: |
+          find zmk/app -type f -name "*.yaml" \
+            -exec sed -i 's/^include: kscan\.yaml$/include: base.yaml/' {} +
+      
       - name: Check ZMK revision
         working-directory: ${{ env.base_dir }}
         run: |
